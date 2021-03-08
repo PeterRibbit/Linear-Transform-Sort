@@ -21,14 +21,7 @@ def getmin_val(lyst):
             min_val = lyst[i]
     return min_val
 
-# main functions for hashsort
-'''
-Transform the initial data set to optimize sorting.
-Best sort time is theoretically achieved when the transformation function hashes the
-inputs into the integers from 0 to n-1.
-This is somewhat related to inverse functions.
-'''
-
+# main functions for linear transform sort
 
 def linear_transform(entry, max_val, min_val, num_entries):
     ret_val = math.floor(num_entries*(entry-min_val)/(max_val-min_val))
@@ -54,7 +47,7 @@ def linear_transform_sort_helper(sublyst):
         # OPTIMIZATION: we sacrifice memory space to save complexity by creating all bins before we know if we need them.
         for i in range(num_entries + 1): # create n+1 bins
             bins.append([]) 
-        for i in range(num_entries): # hash members into bins
+        for i in range(num_entries): # move members into bins
             cast_location = linear_transform(sublyst[i], max_val, min_val, num_entries)
             bins[cast_location].append(sublyst[i])
         for i in range(num_entries + 1): # recurse on each bin
